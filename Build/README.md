@@ -30,9 +30,7 @@ Example to run from folder containing the Dockerfile:
 docker build --tag gebademo.azurecr.io/gotemplate:1.0.0 .
 ```
 
-Running the above will use **Dockerfile**
-
-This will result in a container image **gebademo.azurecr.io/gotemplate:1.0.0** on your **local computer**.
+Running the above will use **Dockerfile**. You can have multipe --tag (or -t) parameters to tag the image into multiple repositories after the build. The result is a container image **gebademo.azurecr.io/gotemplate:1.0.0** on your **local computer**.
 
 To list the images on your computer:
 

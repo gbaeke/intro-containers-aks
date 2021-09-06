@@ -13,6 +13,8 @@ This workflow contains the following actions:
 
 There are many alternative ways to achieve the same result. Often, these steps are fully scripted as well using the same commands you saw earlier.
 
+**Note:** if you have been using Docker Desktop on Windows in the previous sections, you also used BuildKit because it is the default way to run Docker builds; setting up Buildx ensures we use BuildKit on the GitHub runner
+
 **Note:** you will often see authentication to GHCR with a GitHub token stored as a secret; this is not necessary anymore because you can use your GITHUB_TOKEN which is a built-in secret:
 
 ```
