@@ -57,9 +57,27 @@ You can also use **gcr.io/distroless/static**. Distroless is a Google project th
 
 Distroless static contains:
 - ca-certificates
-- /etc/passwd for a root user
+- /etc/passwd for a root user (UID 0), nobody (UID 65534), nonroot (UID 65532) 
 - /tmp folder
 - tzdata
 
 This is useful for statically compiled applications that do not require libc. Otherwise use **distroless/base**
+
+**Note:** the user your container runs with can be easily overridden at runtime and does not need to match the user(s) in /etc/passwd. For instance, with Kubernetes, use securityContext:
+
+```
+spec:
+      containers:
+        - name: go-template
+          image: ghcr.io/gbaeke/go-template:0.0.2
+          securityContext:
+            runAsUser: 10000
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - all
+```
+
+The above does not work on Windows containers: see https://kubernetes.io/docs/tasks/configure-pod-container/configure-runasusername/ 
 
