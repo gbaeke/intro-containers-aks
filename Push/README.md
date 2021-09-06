@@ -20,6 +20,8 @@ docker push DOCKERID/imagename:tag
 
 **Note:** do not use the **latest** tag in production
 
+**Note:** by default, this is a public image that anyone can pull; from Kubernetes there is no need to authenticate
+
 ## Azure Container Registry (ACR)
 
 You can login to ACR with **docker** because it is an OCI-compliant registry:
@@ -76,3 +78,8 @@ b1d9c8474591: Pushed
 Result in ACR:
 
 ![alt](acr-repo.png)
+
+You can click on the repository and look at the different tags contained within. If you click on 1.0.0 you will see details about the image. Container registries do not store container images as one blob but as a collection of layers where each layer has a unique digest. When you upload an image, but the registry already has one or more layers with a matching digest, it will not upload those layers. This is especially handy for larger base images.
+
+**Note:** this is a private registy; Kubernetes will need to authenticate to this registry; with AKS you can use managed identity; when all else fails you can use a [secret](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
+
