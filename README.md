@@ -11,4 +11,6 @@
 
 # Kubernetes
 
-- [What is Kubernetes?](Kubernetes - AKS - Quick Overview.pptx)
+- [What is Kubernetes?](/Kubernetes/K8SIntro.pptx)
+
+
