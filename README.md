@@ -11,6 +11,8 @@
 
 # Kubernetes
 
-- [What is Kubernetes?](/Kubernetes/K8SIntro.pptx)
+- [What is Kubernetes? (PPTX)](/Kubernetes/K8SIntro.pptx)
+- [Local Kubernetes](/Kubernetes/Local)
+- [Deploying AKS](/Kubernetes)
 
 
