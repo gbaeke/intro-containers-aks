@@ -60,4 +60,4 @@ spec:
               number: 80
 ```
 
-
+**Note:** the above requires a Kubernetes service on port 80 calles **test**. That service can use a ClusterIP. The **Niginx Ingress Controller** itself uses a service of type LoadBalancer to make it publicly available; as discussed in the services section, the load balancer can be an internal load balancer making **Nginx Ingress Controller** (or any other) available on an internal address only
