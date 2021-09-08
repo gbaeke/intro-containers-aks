@@ -34,3 +34,15 @@ kind-control-plane   NotReady   control-plane,master   29s   v1.21.1
 ## Creating a custom cluster
 
 You can use a YAML config file to configure kind cluster creation. See https://kind.sigs.k8s.io/docs/user/configuration/ for more information.
+
+Example:
+
+```yaml
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+  - role: worker
+```
