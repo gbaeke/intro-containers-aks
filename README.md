@@ -15,4 +15,11 @@
 - [Local Kubernetes](/Kubernetes/Local)
 - [Deploying AKS](/Kubernetes)
 
+# Deploying to Kubernetes
+
+- [Kubectl](Deploy/kubectl.md)
+- [Deploy a Pod](/Deploy/pod.md)
+- [Use a deployment](/Deploy/deployment.md)
+- [Use a service](/Deploy/service.md)
+- [Using ingress](Deploy/ingress.md)
 
