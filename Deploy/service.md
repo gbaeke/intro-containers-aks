@@ -6,7 +6,7 @@ A service solves this problem by providing a ClusterIP that does not change duri
 
 Like a deployment, a service has a selector that uses a label that matches with the pods that need be be behind the service.
 
-![Services](Deploy/services-k8s.png)
+![Services](services-k8s.png)
 
 Example service:
 
