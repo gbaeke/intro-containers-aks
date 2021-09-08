@@ -12,6 +12,8 @@ Azure Kubernetes Service (AKS) deployment options:
 - Azure CLI
 - ARM/Bicep/Terraform
 
+## Portal
+
 ⚠ Let's go through a portal deployment (DEMO)
 
 Considerations:
@@ -52,5 +54,18 @@ Considerations:
     - Azure Policy
 
 
+## Azure CLI
 
+See https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
 
+```bash
+az group create --name myResourceGroup --location eastus
+
+az aks create --resource-group myResourceGroup  --name myAKSCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys
+```
+
+## Deployment with Bicep
+
+See https://github.com/gbaeke/aks-bicep
+
+Also see https://www.youtube.com/watch?v=0fw4UaY9Qd0&t
