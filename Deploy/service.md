@@ -24,7 +24,7 @@ spec:
       targetPort: 8080
 ```
 
-**Note:** the type of service is not specified; it will default to ClusterIP
+**Note:** the type of service is not specified; it will default to clusterIP
 
 A service can expose multiple ports:
 
