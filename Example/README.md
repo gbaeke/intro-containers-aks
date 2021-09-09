@@ -36,8 +36,8 @@ helm repo update
 helm install ingress-nginx ingress-nginx/ingress-nginx --create-namespace --namespace $NAMESPACE
 ```
 
-We use a host-based ingress here. The incoming request in analyzed and mapped to a backed service. In this case (check ingress.yaml), we use **nip.io** to get a hostname for the public IP address of the Ingress Controller.
+We use a host-based ingress here. The incoming request in analyzed and mapped to a backend service. In this case (check ingress.yaml), we use **nip.io** to get a hostname for the public IP address of the Ingress Controller.
 
-⚠ **Replace the IP address in the hostname with the IP address of your Ingress Server**
+⚠ **Replace the IP address in the hostname with the IP address of your Ingress Controller's service**
 
 You should now be able to curl app.IPADDRESS.nip.io and get **hello** back.
