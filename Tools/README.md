@@ -14,15 +14,16 @@ I usually use kind but that is just habit. kind (and minikube as well) can be re
 ## Cluster management
 
 - [K9S](https://github.com/derailed/k9s): terminal UI to manage Kubernetes
-- [Octant](https://octant.dev/): developer-centric web interface for Kubernetes
+- [Octant](https://octant.dev/): developer-centric web interface for Kubernetes; has plugins for extensibility, similar to Lens (see below)
 
-The above tools do not require a server-side component. They talk to the Kubernetes API server just like kubectl and require a kube config file.
+The above tools do not require a server-side component. They talk to the Kubernetes API server just like kubectl and require a kube config file. They do not need installation. They're just executables you need to run.
 
 For cluster management of AKS, don't forget the built-in management capabilities in the **Kubernetes resources** section of your cluster in the portal.
 
-Some tools that require installation (usually just a container):
+Some tools that require installation (usually just a container or simply an installer):
 - [Rancher](https://rancher.com/quick-start/)
 - [Portainer](https://www.portainer.io/)
+- [Lens](https://k8slens.dev/): Lens also has extensions. One such extension is Starboard, which allows you to view vulnerability reports etc... from Lens. The extension only view such reports. You will still need to install and configure Starboard on your cluster. Note there also is a Starboard plugin for Octant (see above)
 
 ## Kubectl plugins
 
