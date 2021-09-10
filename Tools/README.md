@@ -42,3 +42,12 @@ Some plugins I use:
 
 There are many more: use `kubectl krew search` to list plug-ins
 
+## Check out these larger lists of tools
+
+- https://collabnix.github.io/kubetools/
+- https://github.com/lukecav/awesome-kubernetes
+- https://golangrepo.com/repo/tomhuang12-awesome-k8s-resources
+
+Happy tool hunting! 😊
+
+
