@@ -23,7 +23,7 @@ For cluster management of AKS, don't forget the built-in management capabilities
 Some tools that require installation (usually just a container or simply an installer):
 - [Rancher](https://rancher.com/quick-start/)
 - [Portainer](https://www.portainer.io/)
-- [Lens](https://k8slens.dev/): Lens also has extensions. One such extension is Starboard, which allows you to view vulnerability reports etc... from Lens. The extension only view such reports. You will still need to install and configure Starboard on your cluster. Note there also is a Starboard plugin for Octant (see above)
+- [Lens](https://k8slens.dev/): Lens also has extensions. One such extension is Starboard, which allows you to view vulnerability reports etc... from Lens. The extension only view such reports. You will still need to install and configure Starboard on your cluster (or just use the Starboard CLI). Note there also is a Starboard plugin for Octant (see above)
 
 ## Kubectl plugins
 
