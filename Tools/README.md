@@ -38,6 +38,7 @@ Some plugins I use:
 - nginx-ingress: work with nginx-ingess (e.g. kubectl nginx-ingress logs, )
 - view-cert: view certificate information in a secret
 - view-secret: easily decode secrets (remember, secrets are only base64 encoded, not encrypted)
+- starboard: starboard allows you to run vulnerability scans on container images in your cluster, run audit checks and run CIS Kubebench reports (see also starboard plugin/extension for tools like Octant and Lens)
 
 There are many more: use `kubectl krew search` to list plug-ins
 
