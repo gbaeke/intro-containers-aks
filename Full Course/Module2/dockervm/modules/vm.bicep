@@ -16,15 +16,59 @@ runcmd:
  - az aks install-cli
  - systemctl start docker
  - systemctl enable docker
+ - curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+ - chmod +x ./kind
+ - mv ./kind /usr/bin
  
 final_message: "cloud init was here"
 
 '''
 
+resource publicIp 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
+  name: 'docker-ip'
+  location: resourceGroup().location
+  properties: {
+    publicIPAllocationMethod: 'Static'
+    
+  }
+  sku: {
+    name: 'Standard'
+  }
+}
+
+resource nsg 'Microsoft.Network/networkSecurityGroups@2021-02-01' = {
+  name: 'dockernsg'
+  location: resourceGroup().location
+  properties: {
+    securityRules: [
+      {
+           name: 'SSH'
+           properties : {
+               protocol : 'Tcp' 
+               sourcePortRange :  '*'
+               destinationPortRange :  '22'
+               sourceAddressPrefix :  '*'
+               destinationAddressPrefix: '*'
+               access:  'Allow'
+               priority : 1010
+               direction : 'Inbound'
+               sourcePortRanges : []
+               destinationPortRanges : []
+               sourceAddressPrefixes : []
+               destinationAddressPrefixes : []
+          }
+      }      
+    ]
+  }
+}
+
 resource nic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
   name: '${vmName}-nic'
   location: resourceGroup().location
   properties:{
+    networkSecurityGroup: {
+      id: nsg.id
+    }
     ipConfigurations:[
       {
         name: 'ipConfig'
@@ -33,6 +77,9 @@ resource nic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
             id: subnetId
           }
           privateIPAllocationMethod: 'Dynamic'
+          publicIPAddress: {
+            id: publicIp.id
+          }
         }
       }
     ]

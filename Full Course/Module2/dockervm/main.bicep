@@ -1,7 +1,7 @@
 targetScope='subscription'
 
 // resource group parameters
-param rgName string = 'aks-rg'
+param rgName string = 'rg-dockervm'
 param location string = 'westeurope'
 
 // vnet parameters
@@ -32,7 +32,7 @@ module vnet 'modules/vnet.bicep' = {
   }
 }
 
-module vm 'modules/jump-box.bicep' = {
+module vm 'modules/vm.bicep' = {
   name: vmName
   scope: rg
   params:{
