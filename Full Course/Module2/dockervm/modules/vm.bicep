@@ -93,7 +93,7 @@ resource jumpbox 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   location: resourceGroup().location
   properties: {
     hardwareProfile:{
-      vmSize: 'Standard_B1ms'
+      vmSize: 'Standard_B8ms'
     }
     storageProfile:{
       imageReference:{
