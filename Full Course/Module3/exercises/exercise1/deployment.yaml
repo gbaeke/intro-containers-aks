@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - name: nginx
+          # replace with your azure container registry name
           image: gebacourse.azurecr.io/nginx:1.21.3
           ports:
             - containerPort: 80
