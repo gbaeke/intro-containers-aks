@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loadgen
+  labels:
+    name: loadgen
+spec:
+  containers:
+  - name: loadgen
+    image: yamaszone/hey
+    args:
+      - "-z"
+      - "10s"
+      - "-c"
+      - "10"
+      - "-q"
+      - "2"
+      - "http://go-template-load/load"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "1"
