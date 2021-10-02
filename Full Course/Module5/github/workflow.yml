@@ -1,0 +1,44 @@
+name: Deploy to AKS
+
+on:
+ workflow_dispatch
+
+env:
+  CLUSTER_NAME: CLUSTERNAME
+  RESOURCE_GROUP: RESOURCEGROUP
+  IMAGE_TAG: IMAGETAG
+  # include registry in image name e.g. ghcr.io/gbaeke/repo:1.2.3
+  IMAGE_NAME: IMAGENAME
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: azure/container-scan@v0
+        with:
+          image-name: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          run-quality-checks: true
+
+      - uses: azure/aks-set-context@v1
+        with:
+          # requires secret with SP (see docs)
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.RESOURCE_GROUP }}
+      
+      - uses: azure/k8s-bake@v1
+        with:
+          renderEngine: kustomize
+          kustomizationPath: ./deploy/
+        id: bake
+
+      - uses: azure/k8s-deploy@v1.4
+        with:
+          namespace: go-template
+          manifests: ${{ steps.bake.outputs.manifestsBundle }}
+          images: |
+            ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          action: deploy
