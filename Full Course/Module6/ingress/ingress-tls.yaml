@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-example
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # older style to refer to ingress class
+    # kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - app.20.76.129.250.nip.io
+    secretName: my-tls-secret
+  rules:
+  - host: app.20.76.129.250.nip.io
+    http:
+      paths:
+      - path: /api(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: superapi
+            port:
+              number: 80

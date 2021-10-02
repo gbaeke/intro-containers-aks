@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: superapi-lb
+spec:
+  type: LoadBalancer
+  # local preserves the actual client IP address
+  externalTrafficPolicy: Local
+  selector:
+    app: superapi
+  ports:
+  - port: 80
+    targetPort: 8080

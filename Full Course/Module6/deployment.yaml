@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: superapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: superapi
+  template:
+    metadata:
+      labels:
+        app: superapi
+    spec:
+      containers:
+      - name: superapi
+        image: ghcr.io/gbaeke/super:1.0.2
+        env:
+          - name: IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+        args:
+          - "--welcome=Hello from AKS on IP $(IP)"
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 8080
+          name: http

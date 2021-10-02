@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: superapi
+spec:
+  type: ClusterIP
+  # use clusterIP None for headless services
+  # can also be used to a static IP in the service range (not recommended)
+  # clusterIP: None
+
+  # session affinity based on client's IP address
+  # sessionAffinity: ClientIP
+  selector:    
+    app: superapi
+  ports:
+  - port: 80
+    # use the port name defined in the pod template
+    targetPort: http
