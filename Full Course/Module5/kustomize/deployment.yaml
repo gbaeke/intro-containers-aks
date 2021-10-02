@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-template
+spec:
+  selector:
+    matchLabels:
+      app: go-template
+  template:
+    metadata:
+      labels:
+        app: go-template
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: go-template-cm
+            items:
+              - key: configfile
+                path: config.toml
+      containers:
+      - name: go-template
+        image: ghcr.io/gbaeke/go-template:1.0.9
+        env:
+          - name: PORT
+            value: "9090"
+          - name: IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: RANDOMFIELD
+            valueFrom:
+              configMapKeyRef:
+                name: go-template-cm
+                key: randomfield
+        args:
+          - "--welcome='Hello from AKS on IP $(IP). Extra data from CM: $(RANDOMFIELD)"
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        ports:
+        - name: http
+          containerPort: 9090
+        volumeMounts:
+          - name: config
+            mountPath: /config
