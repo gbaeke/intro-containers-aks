@@ -5,18 +5,19 @@ metadata:
   labels:
     name: loadgen
 spec:
+  restartPolicy: Never
   containers:
   - name: loadgen
     image: yamaszone/hey
     args:
       - "-z"
-      - "10s"
+      - "60s"
       - "-c"
-      - "10"
+      - "2"
       - "-q"
       - "2"
       - "http://go-template-load/load"
     resources:
       limits:
         memory: "128Mi"
-        cpu: "1"
+        cpu: "500m"

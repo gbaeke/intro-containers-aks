@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  labels:
+    name: debug
+spec:
+  containers:
+  - name: debug
+    image: praqma/network-multitool:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "100m"

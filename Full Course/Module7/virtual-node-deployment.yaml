@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-template-svc
+spec:
+  selector:
+    app: go-template
+  ports:
+  - port: 80
+    targetPort: 8080
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,10 +30,10 @@ spec:
         - containerPort: 8080
         resources:
           requests:
-            cpu: 100m
+            cpu: 200m
             memory: 128Mi
           limits:
-            cpu: 100m
+            cpu: 200m
             memory: 128Mi
       affinity:
         nodeAffinity:
