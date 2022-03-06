@@ -25,7 +25,7 @@ final_message: "cloud init was here"
 '''
 
 resource publicIp 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
-  name: 'docker-ip'
+  name: '${vmName}-ip'
   location: resourceGroup().location
   properties: {
     publicIPAllocationMethod: 'Static'
@@ -37,7 +37,7 @@ resource publicIp 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
 }
 
 resource nsg 'Microsoft.Network/networkSecurityGroups@2021-02-01' = {
-  name: 'dockernsg'
+  name: '${vmName}-nsg'
   location: resourceGroup().location
   properties: {
     securityRules: [

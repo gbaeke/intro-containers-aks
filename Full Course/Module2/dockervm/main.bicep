@@ -1,5 +1,8 @@
 targetScope='subscription'
 
+// number of students
+param students int = 5
+
 // resource group parameters
 param rgName string = 'rg-dockervm'
 param location string = 'westeurope'
@@ -32,12 +35,14 @@ module vnet 'modules/vnet.bicep' = {
   }
 }
 
-module vm 'modules/vm.bicep' = {
-  name: vmName
+module vm 'modules/vm.bicep' = [for i in range(0, students): {
+  name: 'vmName-${i}'
   scope: rg
   params:{
-    vmName: vmName
+    vmName: '${vmName}-${i}'
     subnetId: vnet.outputs.defaultSubnetId
     adminPassword: adminPassword
   }
-}
+}]
+
+
