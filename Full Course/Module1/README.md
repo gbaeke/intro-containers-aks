@@ -69,3 +69,66 @@ docker push DOCKERID/super:v1
 ```
 
 Check Docker Hub. Can you find `DOCKERID/super:v1`? What about `DOCKERID/super:latest`? You will need to tag the image with `docker tag DOCKERID/super:v1 DOCKERID/super:latest` and push `DOCKERID/super:latest` to Docker Hub.
+
+
+# ACR
+
+Create an Azure Container Registry (ACR) from the portal:
+- Basic SKU
+- Public access
+- Standard encryption at rest
+
+
+When created, check the repositories. There are none for now.
+
+Login to ACR with Azure CLI:
+
+```
+az acr list -o table
+
+az acr login --name ACRNAME
+```
+
+The `az acr login` command should result in `Login Succeeded`.
+
+Let's put an image in the container registry:
+
+```
+az acr import --name gebacourse --source docker.io/library/ubuntu:latest \
+    --image ubuntu:latest
+```
+
+⚠️ az acr import is an easy way to import images from other registries
+
+You should now have an image repository called `ubuntu` in the registry. There is one artifact in the repository called `latest`:
+
+- can you find the digest of the image?
+- the manifest is somewhat larger because `az acr import` imports images for all architectures (amd64, arm, arm64, etc.)
+
+Tag the super image with the following command:
+
+```
+docker tag DOCKERID/super:latest ACRNAME.azurecr.io/super:latest
+```
+
+Now push the image to ACR with the following command:
+
+```
+docker push ACRNAME.azurecr.io/super:latest
+```
+
+Check the repositories from the command line:
+
+```
+az acr repository list --name ACRNAME
+```
+
+Run an ACR Quick Task (from the super-api folder):
+
+```
+az acr build --image super:v1 --registry ACRNAME --file Dockerfile .
+```
+
+Above, the two-stage super-api build is now performed in the cloud by an ACR Task. The logs you see in the terminal are stored by ACR as well. See the `Tasks` tab in the portal.
+
+The result of the task should be a new repository called `super`.
