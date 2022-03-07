@@ -49,3 +49,23 @@ docker run -itp 8080:9090 -e WELCOME='Hello from K8S Course' --entrypoint /app t
 ```
 
 **Note:** entrypoint can be overridden with --entrypoint. To pass arguments to the entrypoint, just add them after the image name. The above command runs Super API on port 9090. The port mapping is changed accordingly.
+
+# Exercise 2
+
+Tag the image:
+
+```
+docker tag DOCKERID/super DOCKERID/super:v1
+```
+
+Now chech your images with `docker image ls`. The new `reporitory` and `tag` should be in the list. The `IMAGE ID` is the same as DOCKERID/super because it was not changed.
+
+Login to Docker Hub with `docker login`.
+
+Push the image to Docker Hub with:
+
+```
+docker push DOCKERID/super:v1
+```
+
+Check Docker Hub. Can you find `DOCKERID/super:v1`? What about `DOCKERID/super:latest`? You will need to tag the image with `docker tag DOCKERID/super:v1 DOCKERID/super:latest` and push `DOCKERID/super:latest` to Docker Hub.
