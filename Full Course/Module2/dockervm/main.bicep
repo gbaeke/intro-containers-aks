@@ -1,7 +1,7 @@
 targetScope='subscription'
 
 // number of students
-param students int = 5
+param students int = 1
 
 // resource group parameters
 param rgName string = 'rg-dockervm'
