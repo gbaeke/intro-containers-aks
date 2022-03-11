@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-example
   annotations:
+    # see https://kubernetes.github.io/ingress-nginx/examples/rewrite/
     nginx.ingress.kubernetes.io/rewrite-target: /$2  
     # older style to refer to ingress class
     kubernetes.io/ingress.class: nginx

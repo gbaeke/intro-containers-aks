@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-template
+  name: super-api
   labels:
-    app: go-template
+    app: super-api
 spec:
   strategy:
     rollingUpdate:
@@ -12,18 +12,18 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: go-template
+      app: super-api
   template:
     metadata:
       labels:
-        app: go-template
+        app: super-api
     spec:
       containers:
-        - name: go-template
-          image: ghcr.io/gbaeke/go-template:1.0.9
+        - name: super-api
+          image: ghcr.io/gbaeke/super:1.0.3
           args:
             - "--log=true"
-            - "--port=9090"
+            - "--port=8080"
           ports:
             - name: http
               containerPort: 8080
@@ -45,7 +45,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /readyz
-              port: 9090
+              port: http
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 1

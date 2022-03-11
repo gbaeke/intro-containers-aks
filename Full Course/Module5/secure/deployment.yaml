@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rootdemo-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rootdemo
+  template:
+    metadata:
+      labels:
+        app: rootdemo
+    spec:
+      containers:
+      - name: rootdemo
+        securityContext:
+          runAsNonRoot: true
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+            - ALL
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

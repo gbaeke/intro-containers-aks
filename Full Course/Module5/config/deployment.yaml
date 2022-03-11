@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-template
+  name: super-api
 spec:
   selector:
     matchLabels:
-      app: go-template
+      app: super-api
   template:
     metadata:
       labels:
-        app: go-template
+        app: super-api
     spec:
       volumes:
         - name: config
           configMap:
-            name: go-template-cm
+            name: super-api-cm
             items:
               - key: configfile
                 path: config.toml
       containers:
-      - name: go-template
-        image: ghcr.io/gbaeke/go-template:1.0.9
+      - name: super-api
+        image: ghcr.io/gbaeke/super:1.0.3
         env:
           - name: PORT
             value: "9090"
@@ -31,7 +31,7 @@ spec:
           - name: RANDOMFIELD
             valueFrom:
               configMapKeyRef:
-                name: go-template-cm
+                name: super-api-cm
                 key: randomfield
         args:
           - "--welcome='Hello from AKS on IP $(IP). Extra data from CM: $(RANDOMFIELD)"

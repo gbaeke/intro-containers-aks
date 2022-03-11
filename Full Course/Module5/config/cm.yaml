@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: go-template-cm
+  name: super-api-cm
   labels:
     app: myapplication
 data:

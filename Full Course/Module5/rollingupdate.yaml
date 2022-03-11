@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-template
+  name: super-api
   labels:
-    app: go-template
+    app: super-api
 spec:
   strategy:
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 0      
+      maxUnavailable: 1      
   replicas: 3
   selector:
     matchLabels:
-      app: go-template
+      app: super-api
   template:
     metadata:
       labels:
-        app: go-template
+        app: super-api
     spec:
       containers:
-        - name: go-template
-          image: ghcr.io/gbaeke/go-template:0.0.1
+        - name: super-api
+          image: ghcr.io/gbaeke/super:1.0.3
           ports:
             - name: http
               containerPort: 8080

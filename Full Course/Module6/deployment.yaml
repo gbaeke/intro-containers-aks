@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: superapi
-        image: ghcr.io/gbaeke/super:1.0.2
+        image: ghcr.io/gbaeke/super:1.0.3
         env:
           - name: IP
             valueFrom:

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-super-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secure-super-api
+  template:
+    metadata:
+      labels:
+        app: secure-super-api
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10000
+        runAsGroup: 10000
+      containers:
+      - name: secure-super-api
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        image: ghcr.io/gbaeke/super:1.0.3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

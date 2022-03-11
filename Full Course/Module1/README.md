@@ -31,7 +31,7 @@ Retrieve the logs of the running container with `docker logs <CONTAINERID>`.
 
 Hit the API with `curl http://localhost:8080` and check the response `Hello from Super API`.
 
-Stop and eremove the container:
+Stop and remove the container:
 - use `docker container stop <CONTAINERID>`
 
 Run the container again but with the WELCOME environment variable set to a message of your choosing:
@@ -45,7 +45,7 @@ Can you override entrypoint in the above command? The answer would be yes but th
 As an example, here is how you set the entrypoint AND extra command line arguments. This app can be given parameters like --port and --log=true/false:
 
 ```
-docker run -itp 8080:9090 -e WELCOME='Hello from K8S Course' --entrypoint /app testbuild --port=9090 --log=true
+docker run -itp 8080:9090 -e WELCOME='Hello from K8S Course' --entrypoint /app DOCKERID/super --port=9090 --log=true
 ```
 
 **Note:** entrypoint can be overridden with --entrypoint. To pass arguments to the entrypoint, just add them after the image name. The above command runs Super API on port 9090. The port mapping is changed accordingly.
