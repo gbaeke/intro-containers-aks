@@ -10,7 +10,7 @@ openssl req -x509 \
   -days 365 \
   -key ca.key \
   -out ca.crt \
-  -subj "/CN=app.20.101.7.133.nip.io"
+  -subj "/CN=app.20.126.176.95.nip.io"
 ```
 
 **Note:** used common name as defined in ingress (name resolves to public IP of Azure Application Gateway)
@@ -20,7 +20,7 @@ openssl req -x509 \
 ```language=sh
 kubectl create secret tls my-tls-secret \
 --key ca.key \
---cert ca.crt -n super-api
+--cert ca.crt
 ```
 
 **Note:** use secret in ingress
