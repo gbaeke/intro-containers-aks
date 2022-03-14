@@ -1,0 +1,24 @@
+apiVersion: v1
+entries:
+  super-api:
+  - apiVersion: v2
+    appVersion: 1.0.3
+    created: "2022-03-14T17:31:44.624075504+01:00"
+    description: A Helm chart for super-api
+    digest: b03327709cde69ab35e4747303dc2b9b042b2671afafdf0989a3b4aef41a7777
+    home: https://github.com/gbaeke/super-api
+    keywords:
+    - api
+    - super-api
+    - golang
+    maintainers:
+    - email: me@example.com
+      name: gbaeke
+    name: super-api
+    sources:
+    - https://github.com/gbaeke/super-api
+    type: application
+    urls:
+    - super-api-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-03-14T17:31:44.623184572+01:00"
