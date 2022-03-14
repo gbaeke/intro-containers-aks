@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - app.20.86.206.159.nip.io
-    secretName: appgw-cert
+    - app.20.126.176.95.nip.io
+    secretName: my-tls-secret
   rules:
-  - host: app.20.86.206.159.nip.io
+  - host: app.20.126.176.95.nip.io
     http:
       paths:
       - path: /

@@ -15,7 +15,7 @@ spec:
       containers:
       - name: rootdemo
         securityContext:
-          runAsNonRoot: true
+          runAsNonRoot: false
           readOnlyRootFilesystem: false
           capabilities:
             drop:

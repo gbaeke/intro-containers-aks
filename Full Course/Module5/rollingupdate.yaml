@@ -6,9 +6,7 @@ metadata:
     app: super-api
 spec:
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1      
+    type: Recreate
   replicas: 3
   selector:
     matchLabels:
@@ -17,6 +15,7 @@ spec:
     metadata:
       labels:
         app: super-api
+        tier: backend
     spec:
       containers:
         - name: super-api

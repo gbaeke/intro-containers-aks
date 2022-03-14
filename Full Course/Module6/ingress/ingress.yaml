@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: superapi-ingress
+  name: superapi-ingress-nginx
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
-  - host: app.20.76.129.250.nip.io
+  - host: app.20.31.24.235.nip.io
     http:
       paths:
       - path: /
