@@ -1,0 +1,14 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-cpu-scaler
+spec:
+  scaleTargetRef:
+    name: keda-load
+  pollingInterval: 10
+  maxReplicaCount: 5
+  triggers:
+  - type: cpu
+    metadata:
+      type: Utilization
+      value: "10"

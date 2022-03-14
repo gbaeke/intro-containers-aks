@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  keda-load
+spec:
+  selector:
+    app:  keda-load
+  type:  ClusterIP
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  8080

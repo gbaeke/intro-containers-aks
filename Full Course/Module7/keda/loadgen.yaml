@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loadgen
+  labels:
+    name: loadgen
+spec:
+  restartPolicy: Never
+  containers:
+  - name: loadgen
+    image: yamaszone/hey
+    args:
+      - "-z"
+      - "60s"
+      - "-c"
+      - "2"
+      - "-q"
+      - "2"
+      - "http://keda-load/load"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
