@@ -1,0 +1,23 @@
+apiVersion: v2
+name: super-api
+version: 1.0.0
+description: A Helm chart for super-api
+
+type: application
+
+appVersion: "1.0.3"
+
+keywords:
+  - api
+  - super-api
+  - golang
+
+home: https://github.com/gbaeke/super-api
+sources: 
+  - https://github.com/gbaeke/super-api
+
+maintainers:
+  - name: gbaeke
+    email: me@example.com
+
+kubeVersion: ">= 1.21.0"

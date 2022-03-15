@@ -1,0 +1,46 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: smi
+
+configurations:
+  - https://argoproj.github.io/argo-rollouts/features/kustomize/rollout-transform.yaml
+
+resources:
+  - namespace.yaml
+  - rollout.yaml
+  - service-canary.yaml
+  - service-stable.yaml
+  - service.yaml
+
+configMapGenerator:
+- name: superapi-config
+  files:
+    - config.toml
+  literals:
+    - WELCOME=Hello from v1!
+    - PORT=8080
+  options:
+    annotations:
+      note: api config
+    labels:
+      type: generated
+    disableNameSuffixHash: false
+
+secretGenerator:
+- name: superapi-secret
+  files:
+    - secret.txt
+  literals:
+    - SECRETKEY=secret value
+  type: Opaque
+
+generatorOptions:
+  disableNameSuffixHash: false
+  labels:
+    type: generated
+  annotations:
+    note: generated
+    
+  
+
+      
