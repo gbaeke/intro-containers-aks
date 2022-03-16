@@ -17,7 +17,7 @@ configMapGenerator:
   files:
     - config.toml
   literals:
-    - WELCOME=Hello from v1!
+    - WELCOME=Hello from v2!
     - PORT=8080
   options:
     annotations:
